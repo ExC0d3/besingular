@@ -1,0 +1,460 @@
+<html>
+      <head>
+        <meta charset="UTF-8">
+        <title>README.md</title>
+      </head>
+      <body>
+        <h2 id="just-another-parallax">Just Another Parallax</h2>
+<p>Smooth parallax scrolling effect for background images, videos and inline elements. Code in pure JavaScript with <strong><em>NO dependencies</em></strong> + jQuery supported. <strong><em>YouTube</em></strong>, <strong><em>Vimeo</em></strong> and <strong><em>Local Videos</em></strong> parallax supported.</p>
+<h2 id="demo"><a href="https://free.nkdev.info/jarallax/">Demo</a></h2>
+<h2 id="tested-browsers">Tested Browsers</h2>
+<ul>
+<li>Latest browsers on Mac and Windows (Chrome, Firefox, Safari, IE11, Edge)</li>
+<li>Latest Chrome on Android</li>
+<li>Latest Safari on iOs</li>
+</ul>
+<h2 id="want-wordpress-plugin-">Want WordPress Plugin?</h2>
+<p><a href="https://wordpress.org/plugins/advanced-backgrounds/"><img src="https://a.nkdev.info/jarallax/awb-preview.jpg" alt="Advanced WordPress Backgrounds"></a></p>
+<p>We made WordPress plugin to easily make backgrounds for content in your blog with all Jarallax features.</p>
+<p>Demo: <a href="https://wp.nkdev.info/free-advanced-wordpress-backgrounds/">https://wp.nkdev.info/free-advanced-wordpress-backgrounds/</a></p>
+<p>Download: <a href="https://nkdev.info/downloads/advanced-wordpress-backgrounds/">https://nkdev.info/downloads/advanced-wordpress-backgrounds/</a></p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="es6">ES6</h3>
+<p><code>npm install jarallax --save</code></p>
+<pre><code class="lang-javascript">import {
+    jarallax,
+    jarallaxElement,
+    jarallaxVideo
+} from &#39;jarallax&#39;;
+
+jarallaxVideo();
+jarallaxElement();
+</code></pre>
+<p>Note: in this way is not available jQuery and data-attribute automatic initialization. Use javascript call instead (<a href="#b-javascript-way">Example</a>).</p>
+<h3 id="browser">Browser</h3>
+<pre><code class="lang-html">&lt;!-- Jarallax --&gt;
+&lt;script src=&quot;jarallax/dist/jarallax.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Include it if you want to use Video parallax --&gt;
+&lt;script src=&quot;jarallax/dist/jarallax-video.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Include it if you want to parallax any element --&gt;
+&lt;script src=&quot;jarallax/dist/jarallax-element.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h4 id="cdn">CDN</h4>
+<p>Link directly from <a href="https://unpkg.com/">unpkg</a></p>
+<pre><code class="lang-html">&lt;!-- Jarallax --&gt;
+&lt;script src=&quot;https://unpkg.com/jarallax@1.10/dist/jarallax.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Include it if you want to use Video parallax --&gt;
+&lt;script src=&quot;https://unpkg.com/jarallax@1.10/dist/jarallax-video.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Include it if you want to parallax any element --&gt;
+&lt;script src=&quot;https://unpkg.com/jarallax@1.10/dist/jarallax-element.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h2 id="supported-plugins">Supported plugins</h2>
+<p>You can add these plugins before jarallax initialize.</p>
+<ul>
+<li><a href="https://github.com/bfred-it/object-fit-images">object-fit-images</a> polyfill for <code>object-fit</code> styles;</li>
+<li><a href="https://github.com/aFarkas/lazysizes">lazysizes</a> lazy-load images with srcset support;</li>
+<li><a href="https://github.com/que-etc/resize-observer-polyfill">resize-observer-polyfill</a> resize observer polyfill for <code>automaticResize</code> option;</li>
+</ul>
+<h2 id="set-up-your-html">Set up your HTML</h2>
+<pre><code class="lang-html">&lt;!-- Background Image Parallax --&gt;
+&lt;div class=&quot;jarallax&quot;&gt;
+    &lt;img class=&quot;jarallax-img&quot; src=&quot;&lt;background_image_url_here&gt;&quot; alt=&quot;&quot;&gt;
+    Your content here...
+&lt;/div&gt;
+
+&lt;!-- Alternate: Background Image Parallax --&gt;
+&lt;div class=&quot;jarallax&quot; style=&quot;background-image: url(&#39;&lt;background_image_url_here&gt;&#39;);&quot;&gt;
+    Your content here...
+&lt;/div&gt;
+</code></pre>
+<h3 id="additional-styles">Additional styles</h3>
+<p>These styles need to correct background image position before Jarallax initialized:</p>
+<pre><code class="lang-css">.jarallax {
+    position: relative;
+    z-index: 0;
+}
+.jarallax &gt; .jarallax-img {
+    position: absolute;
+    object-fit: cover;
+    /* support for plugin https://github.com/bfred-it/object-fit-images */
+    font-family: &#39;object-fit: cover;&#39;;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+</code></pre>
+<p>You can include it from <code>dist/jarallax.css</code>.</p>
+<h2 id="call-the-plugin">Call the plugin</h2>
+<h3 id="a-data-attribute-way">A. Data attribute way</h3>
+<pre><code class="lang-html">&lt;div data-jarallax data-speed=&quot;0.2&quot; class=&quot;jarallax&quot;&gt;
+    &lt;img class=&quot;jarallax-img&quot; src=&quot;&lt;background_image_url_here&gt;&quot; alt=&quot;&quot;&gt;
+    Your content here...
+&lt;/div&gt;
+</code></pre>
+<p>Note: You can use all available options as data attributes. For example: <code>data-speed</code>, <code>data-img-src</code>, <code>data-img-size</code>, etc...</p>
+<h3 id="b-javascript-way">B. JavaScript way</h3>
+<pre><code class="lang-javascript">jarallax(document.querySelectorAll(&#39;.jarallax&#39;), {
+    speed: 0.2
+});
+</code></pre>
+<h3 id="c-jquery-way">C. jQuery way</h3>
+<pre><code class="lang-javascript">$(&#39;.jarallax&#39;).jarallax({
+    speed: 0.2
+});
+</code></pre>
+<h2 id="background-video-usage-examples">Background Video Usage Examples</h2>
+<pre><code class="lang-html">&lt;!-- Background YouTube Parallax --&gt;
+&lt;div class=&quot;jarallax&quot; data-jarallax-video=&quot;https://www.youtube.com/watch?v=ab0TSkLe-E0&quot;&gt;
+    Your content here...
+&lt;/div&gt;
+
+&lt;!-- Background Vimeo Parallax --&gt;
+&lt;div class=&quot;jarallax&quot; data-jarallax-video=&quot;https://vimeo.com/110138539&quot;&gt;
+    Your content here...
+&lt;/div&gt;
+
+&lt;!-- Background Local Video Parallax --&gt;
+&lt;div class=&quot;jarallax&quot; data-jarallax-video=&quot;mp4:./video/local-video.mp4,webm:./video/local-video.webm,ogv:./video/local-video.ogv&quot;&gt;
+    Your content here...
+&lt;/div&gt;
+</code></pre>
+<p>Note: for local videos required only 1 video type, not necessary use all mp4, webm and ogv. This need only for maximum compatibility with all browsers.</p>
+<h2 id="any-element-parallax-usage-examples">Any Element Parallax Usage Examples</h2>
+<pre><code class="lang-html">&lt;!-- Element will be parallaxed on -140 pixels from the screen center by Y axis --&gt;
+&lt;div data-jarallax-element=&quot;-140&quot;&gt;
+    Your content here...
+&lt;/div&gt;
+
+&lt;!-- Element will be parallaxed on 250 pixels from the screen center by Y axis and on -100 pixels from the screen center by X axis --&gt;
+&lt;div data-jarallax-element=&quot;250 -100&quot;&gt;
+    Your content here...
+&lt;/div&gt;
+</code></pre>
+<p>Note: this is more like experimental feature, so the behavior could be changed in the future releases.</p>
+<h2 id="options">Options</h2>
+<p>Options can be passed in data attributes or in object when you initialize jarallax from script.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">type</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left"><code>scroll</code></td>
+<td style="text-align:left">scroll, scale, opacity, scroll-opacity, scale-opacity.</td>
+</tr>
+<tr>
+<td style="text-align:left">speed</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left"><code>0.5</code></td>
+<td style="text-align:left">Parallax effect speed. Provide numbers from -1.0 to 2.0.</td>
+</tr>
+<tr>
+<td style="text-align:left">imgSrc</td>
+<td style="text-align:left">path</td>
+<td style="text-align:left"><code>null</code></td>
+<td style="text-align:left">Image url. By default used image from background.</td>
+</tr>
+<tr>
+<td style="text-align:left">imgElement</td>
+<td style="text-align:left">dom / selector</td>
+<td style="text-align:left"><code>.jarallax-img</code></td>
+<td style="text-align:left">Image tag that will be used as background.</td>
+</tr>
+<tr>
+<td style="text-align:left">imgSize</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left"><code>cover</code></td>
+<td style="text-align:left">Image size. If you use <code>&lt;img&gt;</code> tag for background, you should add <code>object-fit</code> values, else use <code>background-size</code> values.</td>
+</tr>
+<tr>
+<td style="text-align:left">imgPosition</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left"><code>50% 50%</code></td>
+<td style="text-align:left">Image position. If you use <code>&lt;img&gt;</code> tag for background, you should add <code>object-position</code> values, else use <code>background-position</code> values.</td>
+</tr>
+<tr>
+<td style="text-align:left">imgRepeat</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left"><code>no-repeat</code></td>
+<td style="text-align:left">Image repeat. Supported only <code>background-position</code> values.</td>
+</tr>
+<tr>
+<td style="text-align:left">keepImg</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">Keep <code>&lt;img&gt;</code> tag in it&#39;s default place after Jarallax inited.</td>
+</tr>
+<tr>
+<td style="text-align:left">elementInViewport</td>
+<td style="text-align:left">dom</td>
+<td style="text-align:left"><code>null</code></td>
+<td style="text-align:left">Use custom DOM / jQuery element to check if parallax block in viewport. More info here - <a href="https://github.com/nk-o/jarallax/issues/13">Issue 13</a>.</td>
+</tr>
+<tr>
+<td style="text-align:left">zIndex</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left"><code>-100</code></td>
+<td style="text-align:left">z-index of parallax container.</td>
+</tr>
+<tr>
+<td style="text-align:left">disableParallax</td>
+<td style="text-align:left">RegExp / function</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">Disable parallax on specific user agents (using regular expression) or with function return value. The image will be set on the background.</td>
+</tr>
+<tr>
+<td style="text-align:left">disableVideo</td>
+<td style="text-align:left">RegExp / function</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">Disable video load on specific user agents (using regular expression) or with function return value. The image will be set on the background.</td>
+</tr>
+<tr>
+<td style="text-align:left">automaticResize</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left"><strong>Experimental!</strong> Automatically recalculate parallax size and position when the size of parallax block changed (dynamic content inside). Uses ResizeObserver, which has a small browsers compatible. Recommended using with polyfill <a href="https://github.com/que-etc/resize-observer-polyfill">https://github.com/que-etc/resize-observer-polyfill</a>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="disable-on-mobile-devices">Disable on mobile devices</h3>
+<p>You can disable parallax effect and/or video background on mobile devices using option <code>disableParallax</code> and/or <code>disableVideo</code>.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">jarallax(document.querySelectorAll(&#39;.jarallax&#39;), {
+    disableParallax: /iPad|iPhone|iPod|Android/,
+    disableVideo: /iPad|iPhone|iPod|Android/
+});
+</code></pre>
+<p>Or using function. Example:</p>
+<pre><code class="lang-javascript">jarallax(document.querySelectorAll(&#39;.jarallax&#39;), {
+    disableParallax: function () {
+        return /iPad|iPhone|iPod|Android/.test(navigator.userAgent);
+    },
+    disableVideo: function () {
+        return /iPad|iPhone|iPod|Android/.test(navigator.userAgent);
+    }
+});
+</code></pre>
+<h3 id="options-for-video-supported-all-default-options-">Options For Video (+ supported all default options)</h3>
+<p>Required <code>jarallax/jarallax-video.js</code> file.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">videoSrc</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left"><code>null</code></td>
+<td style="text-align:left">You can use Youtube, Vimeo or local videos. Also you can use data attribute <code>data-jarallax-video</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left">videoStartTime</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">Start time in seconds when video will be started (this value will be applied also after loop).</td>
+</tr>
+<tr>
+<td style="text-align:left">videoEndTime</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">End time in seconds when video will be ended.</td>
+</tr>
+<tr>
+<td style="text-align:left">videoVolume</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">Video volume from 0 to 100.</td>
+</tr>
+<tr>
+<td style="text-align:left">videoPlayOnlyVisible</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">Play video only when it is visible on the screen.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="options-for-element-parallax">Options For Element Parallax</h3>
+<p>Required <code>jarallax/jarallax-element.js</code> file.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">type</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left"><code>element</code></td>
+<td style="text-align:left">Will only work with <code>element</code> value.</td>
+</tr>
+<tr>
+<td style="text-align:left">speed</td>
+<td style="text-align:left">mixed</td>
+<td style="text-align:left"><code>0 0</code></td>
+<td style="text-align:left">Parallax distance in pixels. Supported Y and X axis. Example: <code>100 200</code>. Also you can use data attribute <code>data-jarallax-element</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left">threshold</td>
+<td style="text-align:left">mixed</td>
+<td style="text-align:left"><code>null null</code></td>
+<td style="text-align:left">Specify threshold for the parallax effect to kick in. For example, if you pass <code>0 0</code>, the element will start to move only after it has been scrolled to the middle of the viewport.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="events">Events</h2>
+<p>Events used the same way as Options.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">onScroll</td>
+<td style="text-align:left">Called when parallax working. Use first argument with calculations. More info <a href="#onscroll-event">see below</a>.</td>
+</tr>
+<tr>
+<td style="text-align:left">onInit</td>
+<td style="text-align:left">Called after init end.</td>
+</tr>
+<tr>
+<td style="text-align:left">onDestroy</td>
+<td style="text-align:left">Called after destroy.</td>
+</tr>
+<tr>
+<td style="text-align:left">onCoverImage</td>
+<td style="text-align:left">Called after cover image.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="onscroll-event">onScroll event</h3>
+<pre><code class="lang-javascript">jarallax(document.querySelectorAll(&#39;.jarallax&#39;), {
+    onScroll: function(calculations) {
+        console.log(calculations);
+    }
+});
+</code></pre>
+<p>Console Result:</p>
+<pre><code class="lang-javascript">{
+    // parallax section client rect (top, left, width, height)
+    rect            : object,
+
+    // see image below for more info
+    beforeTop       : float,
+    beforeTopEnd    : float,
+    afterTop        : float,
+    beforeBottom    : float,
+    beforeBottomEnd : float,
+    afterBottom     : float,
+
+    // percent of visible part of section (from 0 to 1)
+    visiblePercent  : float,
+
+    // percent of block position relative to center of viewport from -1 to 1
+    fromViewportCenter: float
+}
+</code></pre>
+<p>Calculations example:
+<a href="https://a.nkdev.info/jarallax/jarallax-calculations.jpg"><img src="https://a.nkdev.info/jarallax/jarallax-calculations.jpg" alt="On Scroll Calculations"></a></p>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Result</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">destroy</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">Destroy Jarallax and set block as it was before plugin init.</td>
+</tr>
+<tr>
+<td style="text-align:left">isVisible</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">Check if parallax block is in viewport.</td>
+</tr>
+<tr>
+<td style="text-align:left">onResize</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">Fit image and clip parallax container. Called on window resize and load.</td>
+</tr>
+<tr>
+<td style="text-align:left">onScroll</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">Calculate parallax image position. Called on window scroll.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="call-methods-example">Call methods example</h3>
+<h4 id="a-javascript-way">A. JavaScript way</h4>
+<pre><code class="lang-javascript">jarallax(document.querySelectorAll(&#39;.jarallax&#39;), &#39;destroy&#39;);
+</code></pre>
+<h4 id="b-jquery-way">B. jQuery way</h4>
+<pre><code class="lang-javascript">$(&#39;.jarallax&#39;).jarallax(&#39;destroy&#39;);
+</code></pre>
+<h2 id="no-conflict">No conflict</h2>
+<p>If you already have global <strong><em>jarallax</em></strong> variable or <strong><em>jQuery.fn.jarallax</em></strong>, you can rename plugin.</p>
+<h3 id="a-javascript-way">A. JavaScript way</h3>
+<pre><code class="lang-javascript">var newJarallax = jarallax.noConflict();
+</code></pre>
+<h3 id="b-jquery-way">B. jQuery way</h3>
+<pre><code class="lang-javascript">jQuery.fn.newJarallax = jQuery.fn.jarallax.noConflict();
+</code></pre>
+<h2 id="for-developers">For Developers</h2>
+<h3 id="installation">Installation</h3>
+<ul>
+<li>Run <code>npm install</code> in the command line. Or if you need to update some dependencies, run <code>npm update</code></li>
+</ul>
+<h3 id="building">Building</h3>
+<ul>
+<li><code>npm run dev</code> to run build and start local server with files watcher</li>
+<li><code>npm run build</code> to run build</li>
+</ul>
+<h3 id="linting">Linting</h3>
+<ul>
+<li><code>npm run js-lint</code> to show eslint errors</li>
+<li><code>npm run js-lint-fix</code> to automatically fix some of the eslint errors</li>
+</ul>
+<h3 id="test">Test</h3>
+<ul>
+<li><code>npm run test</code> to run unit tests</li>
+</ul>
+<h2 id="real-usage-examples">Real Usage Examples</h2>
+<ul>
+<li><a href="https://demo.nkdev.info/#khaki">Khaki</a></li>
+<li><a href="https://demo.nkdev.info/#godlike">Godlike</a></li>
+<li><a href="https://demo.nkdev.info/#youplay">Youplay</a></li>
+</ul>
+<h2 id="credits">Credits</h2>
+<p>Images <a href="https://unsplash.com/">https://unsplash.com/</a>
+Local Video <a href="https://videos.pexels.com/">https://videos.pexels.com/</a></p>
+
+      </body>
+    </html>
