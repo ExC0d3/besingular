@@ -7,7 +7,8 @@ const data = [
     time: "10 Lectures, 20 Hours",
     category: categories[0],
     img: "assets/img/courses/Mech1.jpg",
-    url: 'MechAlpha.html'
+    url: 'MechAlpha.html',
+    other: 'Some text'
   },
   {
     heading: "Mechatronics Series: Beta",
@@ -15,7 +16,8 @@ const data = [
     time: "10 Lectures, 20 Hours",
     category: categories[0],
     img: "assets/img/courses/Mech2.jpg",
-    url: 'MechBeta.html'
+    url: 'MechBeta.html',
+    other: 'Some text'
   },
   {
     heading: "Mechatronics Series: Gamma",
@@ -23,7 +25,8 @@ const data = [
     time: "10 Lectures, 20 Hours",
     category: categories[0],
     img: "assets/img/courses/Mech3.jpg",
-    url: 'MechGamma.html'
+    url: 'MechGamma.html',
+    other: 'Some text'
   },
   {
     heading: "Embedded AR Series: Alpha",
@@ -31,7 +34,8 @@ const data = [
     time: "10 Lectures, 20 Hours",
     category: categories[2],
     img: "assets/img/courses/EM1.jpg",
-    url: 'EmbeddedARAlpha.html'
+    url: 'EmbeddedARAlpha.html',
+    other: 'Some text'
   },
   {
     heading: "Embedded AR Series: Beta",
@@ -39,7 +43,8 @@ const data = [
     time: "10 Lectures, 20 Hours",
     category: categories[2],
     img: "assets/img/courses/EM2.jpg",
-    url: 'EmbeddedARBeta.html'
+    url: 'EmbeddedARBeta.html',
+    other: 'Some text'
   },
   {
     heading: "Embedded AR Series: Gamma",
@@ -47,7 +52,8 @@ const data = [
     time: "10 Lectures, 20 Hours",
     category: categories[2],
     img: "assets/img/courses/EM3.jpg",
-    url: 'EmbeddedARGamma.html'
+    url: 'EmbeddedARGamma.html',
+    other: 'Some text'
   },
   {
     heading: "Kodigo Python Series: Alpha",
@@ -55,7 +61,8 @@ const data = [
     time: "10 Lectures, 15 Hours",
     category: categories[1],
     img: "assets/img/courses/Python1.jpg",
-    url: 'KodigoPyAlpha.html'
+    url: 'KodigoPyAlpha.html',
+    other: 'Some text'
   },
   {
     heading: "Kodigo Python Series: Beta",
@@ -63,7 +70,8 @@ const data = [
     time: "10 Lectures, 15 Hours",
     category: categories[1],
     img: "assets/img/courses/Python2.jpg",
-    url: 'KodigoPyBeta.html'
+    url: 'KodigoPyBeta.html',
+    other: 'Some text'
   },
   {
     heading: "Kodigo Python Series: Gamma",
@@ -71,31 +79,44 @@ const data = [
     time: "10 Lectures, 15 Hours",
     category: categories[1],
     img: "assets/img/courses/Python3.jpg",
-    url: 'KodigoPyGamma.html'
+    url: 'KodigoPyGamma.html',
+    other: 'Some text'
   },
   {
     heading: "Kodigo Java-Processing Series: Alpha",
-    info: "Creators, Innovators",
+    info: "Innovators",
     time: "10 Lectures, 15 Hours",
     category: categories[1],
     img: "assets/img/courses/Java1.jpg",
-    url: 'KodigoJaPrAlpha.html'
+    url: 'KodigoJaPrAlpha.html',
+    other: 'Some text'
   },
   {
     heading: "Kodigo Java-Processing Series: Beta",
-    info: "Creators, Innovators",
+    info: "Innovators",
     time: "10 Lectures, 15 Hours",
     category: categories[1],
     img: "assets/img/courses/Java2.jpg",
-    url: 'KodigoJaPrBeta.html'
+    url: 'KodigoJaPrBeta.html',
+    other: 'Some text'
   },
   {
     heading: "Kodigo Java-Processing Series: Beta",
-    info: "Creators, Innovators",
+    info: "Innovators",
     time: "10 Lectures, 15 Hours",
     category: categories[1],
     img: "assets/img/courses/Java3.jpg",
-    url: 'KodigoJaPrGamma.html'
+    url: 'KodigoJaPrGamma.html',
+    other: 'Some text'
+  },
+  {
+    heading: "Magic In The box",
+    info: "Explorers",
+    time: "10 Lectures, 15 Hours",
+    category: categories[0],
+    img: "assets/img/courses/Java3.jpg",
+    url: 'MagicInTheBox.html',
+    other: 'Some text'
   }
 ];
 
@@ -150,7 +171,6 @@ let selectedFilter = {
 }
 
 const setFilterCategory = (category) => {
-  console.log('Setting category: ', category);
   selectedFilter.category = category;
 }
 
@@ -184,7 +204,7 @@ const initPagination = () => {
             $('#courses-root').empty();
             let coursesRoot = document.getElementById('courses-root');
             data
-            .map(({img, heading, url, info, time}) => {
+            .map(({img, heading, url, info, time, other}) => {
               let div = document.createElement('div');
               div.classList.add(...["list-card", "align-items-center", "shadow-v1", "marginTop-30"]);
               div.innerHTML = `<div class="col-lg-5 px-lg-4 my-4">
@@ -196,16 +216,17 @@ const initPagination = () => {
                   <a href="${url}" class="h4">
                     ${heading}
                   </a>
-                  <ul class="list-inline mt-2">
+                  <ul class="list-group mt-2">
                     <li class="list-inline-item mr-2">
                       <i class="ti-user mr-2"></i>
                       ${info}
                     </li>
-                  </ul>
-                  <ul class="list-inline mt-2">
                     <li class="list-inline-item mr-2">
                       <i class="ti-time small mr-2"></i>
                       ${time}
+                    </li>
+                    <li class="list-inline-item mr-2">
+                      ${other}
                     </li>
                   </ul>
                 </div>
