@@ -7,7 +7,7 @@ const sendToContact = (name, email, message) => {
         message
     })
     .done(() => {
-        window.location.href('https://besingular.com/thankyou');
+        window.location.href = 'https://besingular.com/thankyou';
     });
 }
 
