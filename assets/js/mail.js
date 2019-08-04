@@ -12,7 +12,7 @@ const sendToContact = (name, email, message) => {
 }
 
 const submitContact = () => {
-    const name = document.getElementById('contactName').value;
+    const name = document.getElementById('contantName').value;
     const email = document.getElementById('contactEmail').value;
     const message = document.getElementById('contactMessage').value;
 
