@@ -70,6 +70,10 @@
       function enabledFormSubmit(token){
         document.getElementById("careerSubmitButton").disabled = false;
       };
+
+      function disableSubmitButton() {
+        document.getElementById("careerSubmitButton").disabled = true;
+      }
     </script>
   </head>
 
@@ -598,6 +602,7 @@
                     class="g-recaptcha"
                     data-sitekey="6LcOMLEUAAAAAMaVE-oZId2hJYotu-YGtKbDqXcz"
                     data-callback="enabledFormSubmit"
+                    data-expired-callback="disableSubmitButton"
                   ></div>
                 </div>
               </div>
