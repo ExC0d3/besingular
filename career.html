@@ -64,6 +64,13 @@
     <link rel="stylesheet" href="assets/css/customize.css" />
 
     <script src="assets/js/mail.js"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+      function enabledFormSubmit(token){
+        document.getElementById("careerSubmitButton").disabled = false;
+      };
+    </script>
   </head>
 
   <body>
@@ -243,7 +250,7 @@
     </section>
 
     <section>
-      <div class="container">
+      <div class="container mb-5">
         <div class="row mt-5">
           <div class="col-12">
             <h2>
@@ -252,12 +259,14 @@
             <div class="width-4rem height-4 bg-primary my-2 rounded"></div>
           </div>
           <div class="col-12 mx-auto">
-            <form enctype="multipart/form-data" action="http://localhost:80/career" method="POST">
+            <form enctype="multipart/form-data" action="https://mighty-beach-81261.herokuapp.com" method="POST">
               <div class="row form-group">
-                <label for="name" class="col-1 col-form-label text-right"
+                <label
+                  for="name"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Name</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="text"
@@ -269,10 +278,12 @@
               </div>
 
               <div class="row form-group">
-                <label for="address" class="col-1 col-form-label text-right"
+                <label
+                  for="address"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Address</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="search"
@@ -284,10 +295,12 @@
               </div>
 
               <div class="row form-group">
-                <label for="city" class="col-1 col-form-label text-right"
+                <label
+                  for="city"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >City</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="search"
@@ -299,10 +312,12 @@
               </div>
 
               <div class="row form-group">
-                <label for="zip-code" class="col-1 col-form-label text-right"
+                <label
+                  for="zip-code"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Zip Code</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="search"
@@ -314,10 +329,12 @@
               </div>
 
               <div class="row form-group">
-                <label for="email" class="col-1 col-form-label text-right"
+                <label
+                  for="email"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Email</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="email"
@@ -329,10 +346,12 @@
               </div>
 
               <div class="row form-group">
-                <label for="phone" class="col-1 col-form-label text-right"
+                <label
+                  for="phone"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Telephone</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="tel"
@@ -344,10 +363,12 @@
               </div>
 
               <div class="row form-group">
-                <label for="dob" class="col-1 col-form-label text-right"
+                <label
+                  for="dob"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Date of birth</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="date"
@@ -376,10 +397,10 @@
               <div class="row form-group">
                 <label
                   for="graduationDegree"
-                  class="col-1 col-form-label text-right"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Degree</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="text"
@@ -393,10 +414,10 @@
               <div class="row form-group">
                 <label
                   for="graduationDate"
-                  class="col-1 col-form-label text-right"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Year</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="date"
@@ -410,10 +431,10 @@
               <div class="row form-group">
                 <label
                   for="graduationInstitute"
-                  class="col-1 col-form-label text-right"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Institute</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="text"
@@ -433,10 +454,10 @@
               <div class="row form-group">
                 <label
                   for="postGraduationDegree"
-                  class="col-1 col-form-label text-right"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Degree</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="text"
@@ -450,10 +471,10 @@
               <div class="row form-group">
                 <label
                   for="postGraduationDate"
-                  class="col-1 col-form-label text-right"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Year</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="date"
@@ -467,10 +488,10 @@
               <div class="row form-group">
                 <label
                   for="gpostGaduationInstitute"
-                  class="col-1 col-form-label text-right"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Institute</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="text"
@@ -490,10 +511,10 @@
               <div class="row form-group">
                 <label
                   for="workExperienceYears"
-                  class="col-1 col-form-label text-right"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Years</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="text"
@@ -507,10 +528,10 @@
               <div class="row form-group">
                 <label
                   for="currentEmployer"
-                  class="col-1 col-form-label text-right"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Current employer</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="text"
@@ -524,10 +545,10 @@
               <div class="row form-group">
                 <label
                   for="ctc"
-                  class="col-1 col-form-label text-right"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >CTC</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="number"
@@ -539,10 +560,12 @@
               </div>
 
               <div class="row form-group">
-                <label for="resume" class="col-1 col-form-label text-right"
+                <label
+                  for="resume"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Resume</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <input
                     class="form-control"
                     type="file"
@@ -554,10 +577,12 @@
               </div>
 
               <div class="row form-group">
-                <label for="comments" class="col-1 col-form-label text-right"
+                <label
+                  for="comments"
+                  class="col-md-1 col-12 col-form-label text-md-right"
                   >Comments</label
                 >
-                <div class="col-10">
+                <div class="col-md-10">
                   <textarea
                     id="comments"
                     class="form-control"
@@ -567,13 +592,30 @@
                 </div>
               </div>
               <div class="row form-group">
-                  <!-- <label for="submitButton" class="col-1 col-form-label text-right"
+                <div class="col-md-1 col-12"></div>
+                <div class="col-md-10">
+                  <div
+                    class="g-recaptcha"
+                    data-sitekey="6LcOMLEUAAAAAMaVE-oZId2hJYotu-YGtKbDqXcz"
+                    data-callback="enabledFormSubmit"
+                  ></div>
+                </div>
+              </div>
+              <div class="row form-group">
+                <!-- <label for="submitButton" class="col-md-1 col-12 col-form-label text-md-right"
                     >Submit</label
                   > -->
-                  <div class="col-10">
-                      <button class="btn btn-primary" type="submit">Send</button>
-                  </div>
+                <div class="col-md-10">
+                  <button
+                    id="careerSubmitButton"
+                    class="btn btn-primary"
+                    type="submit"
+                    disabled
+                  >
+                    Send
+                  </button>
                 </div>
+              </div>
             </form>
           </div>
         </div>
